@@ -95,8 +95,9 @@ get 'applicants', to: 'applicants#index'
 - ENV змінні для credentials
 
 #### Docker Configuration
-- **Dockerfile** - Multi-stage build для оптимізації
-- **docker-compose.yml** - Development environment
+- **Dockerfile** - Multi-stage build для production оптимізації
+- **Dockerfile.dev** - Development Dockerfile з Node.js та Yarn
+- **docker-compose.yml** - Development environment (використовує Dockerfile.dev)
 - **docker-compose.production.yml** - Production environment
 - Сервіси: web, db (PostgreSQL), redis
 

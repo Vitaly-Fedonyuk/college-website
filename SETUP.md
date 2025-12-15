@@ -42,7 +42,7 @@ AWS_BUCKET=your_bucket_name
 ### Крок 4: Запустіть Docker Compose
 
 ```bash
-# Побудова контейнерів
+# Побудова контейнерів (використовує Dockerfile.dev з Node.js та Yarn)
 docker compose build
 
 # Запуск сервісів

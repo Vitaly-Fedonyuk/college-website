@@ -80,7 +80,7 @@ RAILS_MASTER_KEY=your_rails_master_key
 ### 3. Запуск додатку
 
 ```bash
-# Побудова образів
+# Побудова образів (використовує Dockerfile.dev для development)
 docker-compose build
 
 # Запуск контейнерів
