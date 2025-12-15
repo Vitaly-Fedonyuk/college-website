@@ -9,8 +9,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-college_website_development}
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+    # Port mapping removed to avoid conflicts with local PostgreSQL
+    # Access via Docker network from web service or use: docker compose exec db psql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -19,8 +19,8 @@ services:
 
   redis:
     image: redis:7-alpine
-    ports:
-      - "6379:6379"
+    # Port mapping removed to avoid conflicts with local Redis
+    # Access via Docker network from web service
     volumes:
       - redis_data:/data
     healthcheck:
