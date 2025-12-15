@@ -35,6 +35,13 @@ module CollegeWebsiteTemp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    
+    # Set Ukrainian as the default locale
+    config.i18n.default_locale = :uk
+    config.i18n.available_locales = [:uk, :en]
+    
+    # Set timezone to Kyiv
+    config.time_zone = 'Kyiv'
 
     # Don't generate system test files.
     config.generators.system_tests = nil

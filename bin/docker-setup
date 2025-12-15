@@ -1,0 +1,64 @@
+#!/bin/bash
+set -e
+
+echo "🚀 College Website - Docker Setup Script"
+echo "=========================================="
+echo ""
+
+# Check if Docker is installed
+if ! command -v docker &> /dev/null; then
+    echo "❌ Docker is not installed. Please install Docker first."
+    exit 1
+fi
+
+# Check if Docker Compose is installed
+if ! docker compose version &> /dev/null; then
+    echo "❌ Docker Compose is not installed. Please install Docker Compose first."
+    exit 1
+fi
+
+echo "✅ Docker and Docker Compose are installed"
+echo ""
+
+# Check if .env file exists
+if [ ! -f .env ]; then
+    echo "📝 Creating .env file from .env.example..."
+    cp .env.example .env
+    echo "⚠️  Please edit .env file and set your credentials before continuing"
+    echo "   Press Enter when ready..."
+    read
+fi
+
+echo "🔨 Building Docker images..."
+docker compose build
+
+echo ""
+echo "🚀 Starting services..."
+docker compose up -d
+
+echo ""
+echo "⏳ Waiting for services to be ready..."
+sleep 10
+
+echo ""
+echo "📦 Creating database..."
+docker compose exec web rails db:create
+
+echo ""
+echo "🔄 Running migrations..."
+docker compose exec web rails db:migrate
+
+echo ""
+echo "🌱 Seeding database with sample data..."
+docker compose exec web rails db:seed
+
+echo ""
+echo "✅ Setup complete!"
+echo ""
+echo "🌐 Your application is running at http://localhost:3000"
+echo ""
+echo "📋 Useful commands:"
+echo "   docker compose logs -f          # View logs"
+echo "   docker compose exec web bash    # Enter container"
+echo "   docker compose down             # Stop services"
+echo ""
