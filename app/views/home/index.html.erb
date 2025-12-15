@@ -1,0 +1,112 @@
+<% content_for :title, "Коледж - Головна сторінка" %>
+
+<!-- Header-->
+<header class="bg-dark py-5">
+  <div class="container px-5">
+    <div class="row gx-5 align-items-center justify-content-center">
+      <div class="col-lg-8 col-xl-7 col-xxl-6">
+        <div class="my-5 text-center text-xl-start">
+          <h1 class="display-5 fw-bolder text-white mb-2">Ласкаво просимо до нашого коледжу</h1>
+          <p class="lead fw-normal text-white-50 mb-4">Сучасна освіта, досвідчені викладачі та можливості для розвитку. Приєднуйтесь до нашої спільноти!</p>
+          <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+            <%= link_to "Новини", news_index_path, class: "btn btn-primary btn-lg px-4 me-sm-3" %>
+            <%= link_to "Абітурієнту", applicants_path, class: "btn btn-outline-light btn-lg px-4" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+        <img class="img-fluid rounded-3 my-5" src="https://dummyimage.com/600x400/343a40/6c757d" alt="Коледж" />
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Features section-->
+<section class="py-5" id="features">
+  <div class="container px-5 my-5">
+    <div class="row gx-5">
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <h2 class="fw-bolder mb-0">Чому варто обрати нас?</h2>
+      </div>
+      <div class="col-lg-8">
+        <div class="row gx-5 row-cols-1 row-cols-md-2">
+          <div class="col mb-5 h-100">
+            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+              <i class="bi bi-collection"></i>
+            </div>
+            <h2 class="h5">Сучасна освіта</h2>
+            <p class="mb-0">Ми використовуємо найсучасніші методики навчання та обладнання для забезпечення високої якості освіти.</p>
+          </div>
+          <div class="col mb-5 h-100">
+            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+              <i class="bi bi-building"></i>
+            </div>
+            <h2 class="h5">Досвідчені викладачі</h2>
+            <p class="mb-0">Наші викладачі - це професіонали з багаторічним досвідом роботи та експертизою у своїх галузях.</p>
+          </div>
+          <div class="col mb-5 mb-md-0 h-100">
+            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+              <i class="bi bi-toggles2"></i>
+            </div>
+            <h2 class="h5">Широкий вибір спеціальностей</h2>
+            <p class="mb-0">У нас ви можете обрати спеціальність, яка найкраще відповідає вашим інтересам та кар'єрним цілям.</p>
+          </div>
+          <div class="col h-100">
+            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+              <i class="bi bi-toggles2"></i>
+            </div>
+            <h2 class="h5">Практична підготовка</h2>
+            <p class="mb-0">Ми забезпечуємо практичну підготовку студентів на базі провідних підприємств та організацій.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- News section-->
+<section class="py-5 bg-light">
+  <div class="container px-5 my-5">
+    <div class="row gx-5 justify-content-center">
+      <div class="col-lg-8 col-xl-6">
+        <div class="text-center">
+          <h2 class="fw-bolder">Останні новини</h2>
+          <p class="lead fw-normal text-muted mb-5">Будьте в курсі всіх подій нашого коледжу</p>
+        </div>
+      </div>
+    </div>
+    <div class="row gx-5">
+      <% @recent_news&.each do |news_item| %>
+        <div class="col-lg-4 mb-5">
+          <div class="card h-100 shadow border-0">
+            <% if news_item.image.attached? %>
+              <%= image_tag news_item.image, class: "card-img-top", alt: news_item.title %>
+            <% else %>
+              <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="<%= news_item.title %>" />
+            <% end %>
+            <div class="card-body p-4">
+              <div class="badge bg-primary bg-gradient rounded-pill mb-2">Новини</div>
+              <a class="text-decoration-none link-dark stretched-link" href="<%= news_path(news_item) %>">
+                <h5 class="card-title mb-3"><%= news_item.title %></h5>
+              </a>
+              <p class="card-text mb-0"><%= truncate(news_item.content, length: 150) %></p>
+            </div>
+            <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+              <div class="d-flex align-items-end justify-content-between">
+                <div class="d-flex align-items-center">
+                  <div class="small">
+                    <div class="text-muted"><%= l(news_item.published_at || news_item.created_at, format: :short) %></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="text-center">
+      <%= link_to "Всі новини", news_index_path, class: "btn btn-primary btn-lg" %>
+    </div>
+  </div>
+</section>
+

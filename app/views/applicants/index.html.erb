@@ -1,0 +1,86 @@
+<% content_for :title, "Абітурієнту" %>
+
+<!-- Page header-->
+<header class="py-5 bg-light border-bottom mb-4">
+  <div class="container">
+    <div class="text-center my-5">
+      <h1 class="fw-bolder">Інформація для абітурієнтів</h1>
+      <p class="lead mb-0">Вся необхідна інформація для вступу до нашого коледжу</p>
+    </div>
+  </div>
+</header>
+
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-6 mb-4">
+      <div class="card h-100 shadow-lg">
+        <div class="card-body">
+          <div class="text-center mb-3">
+            <i class="bi bi-door-open fs-1 text-primary"></i>
+          </div>
+          <h3 class="card-title text-center">Правила вступу</h3>
+          <p class="card-text">Дізнайтеся про умови та порядок вступу до коледжу, необхідні документи та терміни подання заяв</p>
+          <div class="text-center">
+            <%= link_to "Детальніше", admission_path, class: "btn btn-primary btn-lg" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-lg-6 mb-4">
+      <div class="card h-100 shadow-lg">
+        <div class="card-body">
+          <div class="text-center mb-3">
+            <i class="bi bi-mortarboard fs-1 text-primary"></i>
+          </div>
+          <h3 class="card-title text-center">Спеціальності</h3>
+          <p class="card-text">Перегляньте повний список спеціальностей, за якими здійснюється підготовка фахівців у нашому коледжі</p>
+          <div class="text-center">
+            <%= link_to "Переглянути", specialties_path, class: "btn btn-primary btn-lg" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mt-5">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">Чому варто обрати наш коледж?</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><i class="bi bi-check-circle text-success me-2"></i>Сучасна матеріально-технічна база</li>
+                <li class="list-group-item"><i class="bi bi-check-circle text-success me-2"></i>Досвідчені викладачі-практики</li>
+                <li class="list-group-item"><i class="bi bi-check-circle text-success me-2"></i>Практична підготовка на базі провідних підприємств</li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><i class="bi bi-check-circle text-success me-2"></i>Гуртожиток для іногородніх студентів</li>
+                <li class="list-group-item"><i class="bi bi-check-circle text-success me-2"></i>Активне студентське життя</li>
+                <li class="list-group-item"><i class="bi bi-check-circle text-success me-2"></i>Працевлаштування випускників</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="alert alert-info">
+        <h5 class="alert-heading"><i class="bi bi-info-circle me-2"></i>Контакти приймальної комісії</h5>
+        <p class="mb-0">
+          <strong>Телефон:</strong> +380 (XX) XXX-XX-XX<br>
+          <strong>Email:</strong> admission@college.edu<br>
+          <strong>Адреса:</strong> м. Київ, вул. Прикладна, 1
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

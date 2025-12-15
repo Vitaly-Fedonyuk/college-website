@@ -1,0 +1,54 @@
+<% content_for :title, @news_item.title %>
+
+<!-- Page content-->
+<article class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <!-- Post content-->
+        <article>
+          <!-- Post header-->
+          <header class="mb-4">
+            <!-- Post title-->
+            <h1 class="fw-bolder mb-1"><%= @news_item.title %></h1>
+            <!-- Post meta content-->
+            <div class="text-muted fst-italic mb-2">
+              Опубліковано <%= l(@news_item.published_at || @news_item.created_at, format: :long) %>
+            </div>
+          </header>
+          <!-- Preview image figure-->
+          <% if @news_item.image.attached? %>
+            <figure class="mb-4">
+              <%= image_tag @news_item.image, class: "img-fluid rounded", alt: @news_item.title %>
+            </figure>
+          <% end %>
+          <!-- Post content-->
+          <section class="mb-5">
+            <%= simple_format(@news_item.content) %>
+          </section>
+        </article>
+        
+        <!-- Navigation-->
+        <div class="d-flex">
+          <%= link_to "← Назад до новин", news_index_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+      
+      <!-- Side widgets-->
+      <div class="col-lg-4">
+        <!-- Side widget-->
+        <div class="card mb-4">
+          <div class="card-header">Інші новини</div>
+          <div class="card-body">
+            <% News.published.where.not(id: @news_item.id).limit(5).each do |other_news| %>
+              <div class="mb-3">
+                <%= link_to other_news.title, news_path(other_news), class: "text-decoration-none" %>
+                <div class="small text-muted"><%= l(other_news.published_at || other_news.created_at, format: :short) %></div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

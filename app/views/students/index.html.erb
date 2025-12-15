@@ -1,0 +1,78 @@
+<% content_for :title, "Студенту" %>
+
+<!-- Page header-->
+<header class="py-5 bg-light border-bottom mb-4">
+  <div class="container">
+    <div class="text-center my-5">
+      <h1 class="fw-bolder">Інформація для студентів</h1>
+      <p class="lead mb-0">Корисна інформація та ресурси для наших студентів</p>
+    </div>
+  </div>
+</header>
+
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-4 mb-4">
+      <div class="card h-100 shadow">
+        <div class="card-body">
+          <div class="text-center mb-3">
+            <i class="bi bi-calendar-event fs-1 text-primary"></i>
+          </div>
+          <h3 class="card-title text-center">Розклад занять</h3>
+          <p class="card-text">Актуальний розклад занять для всіх груп та спеціальностей</p>
+          <div class="text-center">
+            <a href="#" class="btn btn-primary">Переглянути</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-lg-4 mb-4">
+      <div class="card h-100 shadow">
+        <div class="card-body">
+          <div class="text-center mb-3">
+            <i class="bi bi-book fs-1 text-primary"></i>
+          </div>
+          <h3 class="card-title text-center">Навчальні матеріали</h3>
+          <p class="card-text">Доступ до електронної бібліотеки та навчальних ресурсів</p>
+          <div class="text-center">
+            <a href="#" class="btn btn-primary">Перейти</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-lg-4 mb-4">
+      <div class="card h-100 shadow">
+        <div class="card-body">
+          <div class="text-center mb-3">
+            <i class="bi bi-people fs-1 text-primary"></i>
+          </div>
+          <h3 class="card-title text-center">Гуртки</h3>
+          <p class="card-text">Інформація про студентські гуртки та позанавчальні активності</p>
+          <div class="text-center">
+            <%= link_to "Дізнатися більше", student_clubs_path, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">Важлива інформація</h4>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>Електронний журнал доступний за адресою: <a href="#">journal.college.edu</a></li>
+            <li>Консультації викладачів проводяться щосереди з 14:00 до 16:00</li>
+            <li>Бібліотека працює з понеділка по п'ятницю з 9:00 до 17:00</li>
+            <li>Студентська рада збирається кожного вівторка о 15:00</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
