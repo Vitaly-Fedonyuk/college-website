@@ -1,0 +1,109 @@
+#!/bin/bash
+set -e
+
+echo "🔍 College Website - Project Verification"
+echo "=========================================="
+echo ""
+
+# Color codes
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+check_file() {
+    if [ -f "$1" ]; then
+        echo -e "${GREEN}✅${NC} $1 exists"
+    else
+        echo -e "${RED}❌${NC} $1 missing"
+        exit 1
+    fi
+}
+
+check_dir() {
+    if [ -d "$1" ]; then
+        echo -e "${GREEN}✅${NC} $1 exists"
+    else
+        echo -e "${RED}❌${NC} $1 missing"
+        exit 1
+    fi
+}
+
+echo "📁 Checking Project Structure..."
+check_file "Gemfile"
+check_file "Gemfile.lock"
+check_file "config/database.yml"
+check_file "config/routes.rb"
+check_file "docker-compose.yml"
+check_file "docker-compose.production.yml"
+check_file "Dockerfile"
+check_file ".env.example"
+check_file "README.md"
+check_file "SETUP.md"
+
+echo ""
+echo "🎨 Checking Assets..."
+check_file "app/assets/stylesheets/application.bootstrap.scss"
+check_file "app/assets/stylesheets/modern-business.css"
+check_file "app/javascript/application.js"
+check_file "app/javascript/scripts.js"
+
+echo ""
+echo "🎮 Checking Controllers..."
+check_file "app/controllers/home_controller.rb"
+check_file "app/controllers/news_controller.rb"
+check_file "app/controllers/students_controller.rb"
+check_file "app/controllers/applicants_controller.rb"
+check_file "app/controllers/pages_controller.rb"
+check_file "app/controllers/documents_controller.rb"
+
+echo ""
+echo "📊 Checking Models..."
+check_file "app/models/news.rb"
+check_file "app/models/document.rb"
+
+echo ""
+echo "📄 Checking Views..."
+check_dir "app/views/home"
+check_dir "app/views/news"
+check_dir "app/views/students"
+check_dir "app/views/applicants"
+check_dir "app/views/pages"
+check_dir "app/views/documents"
+check_dir "app/views/shared"
+check_file "app/views/shared/_navigation.html.erb"
+check_file "app/views/shared/_footer.html.erb"
+check_file "app/views/layouts/application.html.erb"
+
+echo ""
+echo "🗄️  Checking Migrations..."
+check_dir "db/migrate"
+check_file "db/seeds.rb"
+
+echo ""
+echo "⚙️  Checking Configuration..."
+check_file "config/storage.yml"
+check_file "config/locales/uk.yml"
+check_file "config/importmap.rb"
+
+echo ""
+echo "🐳 Checking Docker Files..."
+check_file "Dockerfile"
+check_file "docker-compose.yml"
+check_file ".dockerignore"
+
+echo ""
+echo "🔧 Checking Scripts..."
+check_file "bin/setup"
+check_file "bin/docker-setup"
+check_file "bin/docker-entrypoint"
+
+echo ""
+echo -e "${GREEN}✅ All checks passed!${NC}"
+echo ""
+echo "📋 Next Steps:"
+echo "   1. Run: cp .env.example .env"
+echo "   2. Edit .env with your credentials"
+echo "   3. Run: ./bin/docker-setup (for Docker)"
+echo "   OR"
+echo "   3. Run: ./bin/setup (for local development)"
+echo ""
