@@ -49,13 +49,13 @@ docker compose build
 docker compose up -d
 
 # Створення бази даних
-docker compose exec web rails db:create
+docker compose exec web bin/rails db:create
 
 # Виконання міграцій
-docker compose exec web rails db:migrate
+docker compose exec web bin/rails db:migrate
 
 # Завантаження тестових даних
-docker compose exec web rails db:seed
+docker compose exec web bin/rails db:seed
 ```
 
 ### Крок 5: Відкрийте додаток
@@ -136,7 +136,7 @@ redis-server
 
 ```bash
 # Для Docker
-docker compose exec web rails console
+docker compose exec web bin/rails console
 
 # Для локальної розробки
 rails console
@@ -197,10 +197,10 @@ docker compose restart
 docker compose exec web bash
 
 # Rails console
-docker compose exec web rails console
+docker compose exec web bin/rails console
 
 # Виконання міграцій
-docker compose exec web rails db:migrate
+docker compose exec web bin/rails db:migrate
 ```
 
 ### Rails

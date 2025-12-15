@@ -87,13 +87,13 @@ docker-compose build
 docker-compose up -d
 
 # Створення бази даних
-docker-compose exec web rails db:create
+docker-compose exec web bin/rails db:create
 
 # Виконання міграцій
-docker-compose exec web rails db:migrate
+docker-compose exec web bin/rails db:migrate
 
 # Завантаження тестових даних
-docker-compose exec web rails db:seed
+docker-compose exec web bin/rails db:seed
 ```
 
 ### 4. Відкрийте браузер
@@ -115,8 +115,8 @@ docker-compose down
 docker-compose restart
 
 # Виконання Rails команд
-docker-compose exec web rails console
-docker-compose exec web rails routes
+docker-compose exec web bin/rails console
+docker-compose exec web bin/rails routes
 
 # Підключення до бази даних
 docker-compose exec db psql -U postgres -d college_website_development

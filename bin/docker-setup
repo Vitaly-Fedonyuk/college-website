@@ -42,15 +42,15 @@ sleep 10
 
 echo ""
 echo "📦 Creating database..."
-docker compose exec web rails db:create
+docker compose exec web bin/rails db:create
 
 echo ""
 echo "🔄 Running migrations..."
-docker compose exec web rails db:migrate
+docker compose exec web bin/rails db:migrate
 
 echo ""
 echo "🌱 Seeding database with sample data..."
-docker compose exec web rails db:seed
+docker compose exec web bin/rails db:seed
 
 echo ""
 echo "✅ Setup complete!"
