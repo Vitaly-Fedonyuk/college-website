@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'documents/index'
-  get 'documents/new'
-  get 'documents/create'
+  # Devise authentication
+  devise_for :users
+  
   # Root route
   root 'home#index'
   
@@ -20,6 +20,16 @@ Rails.application.routes.draw do
   get 'public_info', to: 'pages#public_info'
   get 'departments', to: 'pages#departments'
   get 'quality_monitoring', to: 'pages#quality_monitoring'
+  
+  # Admin namespace
+  namespace :admin do
+    root 'dashboard#index'
+    resources :news do
+      member do
+        get :preview
+      end
+    end
+  end
   
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
