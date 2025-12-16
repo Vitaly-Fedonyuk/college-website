@@ -12,6 +12,14 @@ uk:
       default: "%d.%m.%Y %H:%M"
       long: "%d %B %Y, %H:%M"
       short: "%d %b, %H:%M"
+  
+  views:
+    pagination:
+      first: "&laquo; Перша"
+      last: "Остання &raquo;"
+      previous: "&lsaquo; Попередня"
+      next: "Наступна &rsaquo;"
+      truncate: "&hellip;"
       
   activerecord:
     models:
