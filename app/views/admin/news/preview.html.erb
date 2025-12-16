@@ -1,0 +1,42 @@
+<% content_for :title, @news_item.title %>
+
+<div class="alert alert-warning alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3" style="z-index: 9999; max-width: 600px;" role="alert">
+  <strong><i class="bi bi-eye"></i> Режим перегляду</strong> - Це попередній перегляд. Зміни не збережено.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<!-- Page content-->
+<article class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <!-- Post content-->
+        <article>
+          <!-- Post header-->
+          <header class="mb-4">
+            <!-- Post title-->
+            <h1 class="fw-bolder mb-1"><%= @news_item.title %></h1>
+            <!-- Post meta content-->
+            <div class="text-muted fst-italic mb-2">
+              <% if @news_item.published_at %>
+                Опубліковано <%= l(@news_item.published_at, format: :long) %>
+              <% else %>
+                <span class="badge bg-warning text-dark">Чернетка (не опубліковано)</span>
+              <% end %>
+            </div>
+          </header>
+          <!-- Preview image figure-->
+          <% if @news_item.image.attached? %>
+            <figure class="mb-4">
+              <%= image_tag @news_item.image, class: "img-fluid rounded", alt: @news_item.title %>
+            </figure>
+          <% end %>
+          <!-- Post content-->
+          <section class="mb-5">
+            <%= simple_format(@news_item.content) %>
+          </section>
+        </article>
+      </div>
+    </div>
+  </div>
+</article>

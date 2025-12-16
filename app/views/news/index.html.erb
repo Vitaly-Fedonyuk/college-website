@@ -39,7 +39,7 @@
         
         <!-- Pagination-->
         <div class="d-flex justify-content-center mb-4">
-          <!-- Add pagination here if using kaminari or will_paginate -->
+          <%= paginate @news, theme: 'twitter-bootstrap-5' %>
         </div>
       <% else %>
         <div class="alert alert-info">

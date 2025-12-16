@@ -1,0 +1,116 @@
+<%= form_with(model: [:admin, news_item], local: true, html: { multipart: true, id: 'news-form' }) do |form| %>
+  <% if news_item.errors.any? %>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading">Помилки при збереженні:</h4>
+      <ul class="mb-0">
+        <% news_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="mb-0">Основна інформація</h5>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <%= form.label :title, "Заголовок", class: "form-label" %>
+            <%= form.text_field :title, class: "form-control", placeholder: "Введіть заголовок новини", required: true %>
+          </div>
+
+          <div class="mb-3">
+            <%= form.label :content, "Зміст", class: "form-label" %>
+            <%= form.text_area :content, rows: 15, class: "form-control", placeholder: "Введіть текст новини", required: true %>
+            <div class="form-text">Використовуйте параграфи для розбиття тексту</div>
+          </div>
+
+          <div class="mb-3">
+            <%= form.label :published_at, "Дата публікації", class: "form-label" %>
+            <%= form.datetime_local_field :published_at, class: "form-control" %>
+            <div class="form-text">Залиште порожнім для збереження як чернетку</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="mb-0">Зображення</h5>
+        </div>
+        <div class="card-body">
+          <% if news_item.image.attached? %>
+            <div class="mb-3">
+              <%= image_tag news_item.image.variant(resize_to_limit: [400, 300]), class: "img-fluid rounded" %>
+            </div>
+          <% end %>
+          
+          <div class="mb-3">
+            <%= form.label :image, "Завантажити зображення", class: "form-label" %>
+            <%= form.file_field :image, class: "form-control", accept: "image/*" %>
+            <div class="form-text">Рекомендований розмір: 800x600 пікселів</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="mb-0">Дії</h5>
+        </div>
+        <div class="card-body">
+          <div class="d-grid gap-2">
+            <%= form.submit news_item.persisted? ? "Оновити новину" : "Створити новину", class: "btn btn-primary" %>
+            
+            <% if news_item.persisted? %>
+              <%= button_tag type: "button", class: "btn btn-info", onclick: "openPreview()" do %>
+                <i class="bi bi-eye"></i> Попередній перегляд
+              <% end %>
+            <% else %>
+              <%= button_tag type: "button", class: "btn btn-info", onclick: "openPreviewNew()" do %>
+                <i class="bi bi-eye"></i> Попередній перегляд
+              <% end %>
+            <% end %>
+            
+            <%= link_to "Скасувати", admin_news_index_path, class: "btn btn-secondary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script>
+  function openPreview() {
+    const form = document.getElementById('news-form');
+    const previewUrl = '<%= preview_admin_news_path(news_item) if news_item.persisted? %>';
+    
+    // Create a temporary form to submit to preview
+    const previewForm = document.createElement('form');
+    previewForm.method = 'POST';
+    previewForm.action = previewUrl;
+    previewForm.target = '_blank';
+    
+    // Copy form data
+    const formData = new FormData(form);
+    for (let [key, value] of formData.entries()) {
+      if (value instanceof File) continue; // Skip file uploads for preview
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = value;
+      previewForm.appendChild(input);
+    }
+    
+    document.body.appendChild(previewForm);
+    previewForm.submit();
+    document.body.removeChild(previewForm);
+  }
+  
+  function openPreviewNew() {
+    alert('Збережіть новину спочатку, щоб переглянути превью');
+  }
+</script>
