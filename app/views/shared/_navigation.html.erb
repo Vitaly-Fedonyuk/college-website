@@ -45,15 +45,11 @@
 </nav>
 
 <style>
-  /* Enable dropdown on hover for desktop */
-  @media (min-width: 992px) {
+  /* Enable dropdown on hover for desktop only, not on touch devices */
+  @media (min-width: 992px) and (hover: hover) and (pointer: fine) {
     .dropdown-hover:hover > .dropdown-menu {
       display: block;
       margin-top: 0;
-    }
-    
-    .dropdown-hover > .dropdown-toggle:active {
-      pointer-events: none;
     }
   }
 </style>
