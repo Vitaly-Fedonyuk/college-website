@@ -31,7 +31,7 @@
                 </td>
                 <td>
                   <span class="badge bg-info">
-                    <%= Document::CATEGORIES[document.category] || document.category %>
+                    <%= Document::CATEGORIES.key(document.category) || document.category %>
                   </span>
                 </td>
                 <td>
@@ -45,7 +45,7 @@
                 <td><%= l(document.created_at, format: :short) %></td>
                 <td>
                   <div class="btn-group" role="group">
-                    <%= link_to admin_document_path(document), method: :edit, class: "btn btn-sm btn-outline-primary" do %>
+                    <%= link_to edit_admin_document_path(document), class: "btn btn-sm btn-outline-primary" do %>
                       <i class="bi bi-pencil"></i>
                     <% end %>
                     <%= button_to admin_document_path(document), method: :delete, 

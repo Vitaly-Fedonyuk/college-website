@@ -6,9 +6,9 @@ class Document < ApplicationRecord
   
   # Categories for different pages
   CATEGORIES = {
-    'public_info' => 'Публічна інформація',
-    'departments' => 'Структурні підрозділи',
-    'quality_monitoring' => 'Моніторинг якості'
+    'Публічна інформація' => 'public_info',
+    'Структурні підрозділи' => 'departments',
+    'Моніторинг якості' => 'quality_monitoring'
   }.freeze
   
   scope :for_category, ->(category) { where(category: category) }
