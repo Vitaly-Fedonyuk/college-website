@@ -13,7 +13,7 @@
             <h1 class="fw-bolder mb-1"><%= @news_item.title %></h1>
             <!-- Post meta content-->
             <div class="text-muted fst-italic mb-2">
-              Опубліковано <%= l(@news_item.published_at || @news_item.created_at, format: :long) %>
+              Опубліковано <%= l((@news_item.published_at || @news_item.created_at).to_date, format: :long) %>
             </div>
           </header>
           

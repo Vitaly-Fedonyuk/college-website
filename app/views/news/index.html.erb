@@ -29,7 +29,7 @@
               <% end %>
             <% end %>
             <div class="card-body">
-              <div class="small text-muted"><%= l(news_item.published_at || news_item.created_at, format: :long) %></div>
+              <div class="small text-muted"><%= l((news_item.published_at || news_item.created_at).to_date, format: :long) %></div>
               <h2 class="card-title"><%= link_to news_item.title, news_path(news_item), class: "text-decoration-none" %></h2>
               <p class="card-text"><%= truncate(news_item.content, length: 300) %></p>
               <%= link_to "Читати далі →", news_path(news_item), class: "btn btn-primary" %>
