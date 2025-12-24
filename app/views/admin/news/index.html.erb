@@ -20,8 +20,8 @@
       <% @news.each do |news_item| %>
         <tr>
           <td>
-            <% if news_item.image.attached? %>
-              <%= image_tag news_item.image.variant(resize_to_limit: [60, 60]), class: "img-thumbnail" %>
+            <% if news_item.images.attached? %>
+              <%= image_tag news_item.images.first.variant(resize_to_limit: [60, 60]), class: "img-thumbnail" %>
             <% else %>
               <div class="bg-secondary" style="width: 60px; height: 60px;"></div>
             <% end %>
