@@ -1,0 +1,66 @@
+<% content_for :title, @news_item.title %>
+
+<div class="alert alert-warning alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3" style="z-index: 9999; max-width: 600px;" role="alert">
+  <strong><i class="bi bi-eye"></i> Режим перегляду</strong> - Це попередній перегляд. Зміни не збережено.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<!-- Page content-->
+<article class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <!-- Post content-->
+        <article>
+          <!-- Post header-->
+          <header class="mb-4">
+            <!-- Post title-->
+            <h1 class="fw-bolder mb-1"><%= @news_item.title %></h1>
+            <!-- Post meta content-->
+            <div class="text-muted fst-italic mb-2">
+              <% if @news_item.published_at %>
+                Опубліковано <%= l(@news_item.published_at, format: :long) %>
+              <% else %>
+                <span class="badge bg-warning text-dark">Чернетка (не опубліковано)</span>
+              <% end %>
+            </div>
+          </header>
+          <!-- Image carousel -->
+          <% if @news_item.images.attached? %>
+            <div id="newsImageCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+              <div class="carousel-indicators">
+                <% @news_item.images.each_with_index do |image, index| %>
+                  <button type="button" data-bs-target="#newsImageCarousel" data-bs-slide-to="<%= index %>" 
+                          class="<%= 'active' if index == 0 %>" 
+                          aria-current="<%= 'true' if index == 0 %>" 
+                          aria-label="Slide <%= index + 1 %>"></button>
+                <% end %>
+              </div>
+              <div class="carousel-inner">
+                <% @news_item.images.each_with_index do |image, index| %>
+                  <div class="carousel-item <%= 'active' if index == 0 %>">
+                    <%= image_tag image, class: "d-block w-100 rounded", alt: "#{@news_item.title} - зображення #{index + 1}", style: "max-height: 500px; object-fit: cover;" %>
+                  </div>
+                <% end %>
+              </div>
+              <% if @news_item.images.count > 1 %>
+                <button class="carousel-control-prev" type="button" data-bs-target="#newsImageCarousel" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Попереднє</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#newsImageCarousel" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Наступне</span>
+                </button>
+              <% end %>
+            </div>
+          <% end %>
+          <!-- Post content-->
+          <section class="mb-5">
+            <%= simple_format(@news_item.content) %>
+          </section>
+        </article>
+      </div>
+    </div>
+  </div>
+</article>

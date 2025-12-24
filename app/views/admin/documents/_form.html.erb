@@ -1,0 +1,43 @@
+<div class="mb-4">
+  <div class="mb-3">
+    <%= form.label :name, "Назва документа", class: "form-label" %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Наприклад: Статут коледжу", required: true %>
+  </div>
+  
+  <div class="mb-3">
+    <%= form.label :description, "Опис (необов'язково)", class: "form-label" %>
+    <%= form.text_area :description, rows: 3, class: "form-control", placeholder: "Короткий опис документа" %>
+  </div>
+  
+  <div class="mb-3">
+    <%= form.label :category, "Категорія", class: "form-label" %>
+    <%= form.select :category, 
+        options_for_select(Document::CATEGORIES.to_a, form.object.category), 
+        { prompt: "Виберіть категорію" },
+        { class: "form-select", required: true } %>
+    <div class="form-text">
+      На якій сторінці має відображатися цей документ
+    </div>
+  </div>
+  
+  <div class="mb-3">
+    <%= form.label :file, "Файл документа", class: "form-label" %>
+    <%= form.file_field :file, class: "form-control", accept: ".pdf,.doc,.docx,.xls,.xlsx" %>
+    <% if form.object.file.attached? %>
+      <div class="mt-2">
+        <small class="text-muted">
+          Поточний файл: <%= form.object.file.filename %> 
+          (<%= number_to_human_size(form.object.file.byte_size) %>)
+        </small>
+      </div>
+    <% end %>
+    <div class="form-text">
+      Підтримувані формати: PDF, DOC, DOCX, XLS, XLSX
+    </div>
+  </div>
+  
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <%= link_to "Скасувати", admin_documents_path, class: "btn btn-secondary" %>
+    <%= form.submit button_text, class: "btn btn-primary" %>
+  </div>
+</div>

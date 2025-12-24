@@ -1,0 +1,49 @@
+uk:
+  date:
+    formats:
+      default: "%d.%m.%Y"
+      long: "%d %B %Y"
+      short: "%d %b"
+    month_names: [~, січня, лютого, березня, квітня, травня, червня, липня, серпня, вересня, жовтня, листопада, грудня]
+    abbr_month_names: [~, січ, лют, бер, кві, тра, чер, лип, сер, вер, жов, лис, гру]
+    
+  time:
+    formats:
+      default: "%d.%m.%Y %H:%M"
+      long: "%d %B %Y, %H:%M"
+      short: "%d %b, %H:%M"
+  
+  views:
+    pagination:
+      first: "&laquo; Перша"
+      last: "Остання &raquo;"
+      previous: "&lsaquo; Попередня"
+      next: "Наступна &rsaquo;"
+      truncate: "&hellip;"
+      
+  activerecord:
+    models:
+      news: "Новина"
+      document: "Документ"
+    attributes:
+      news:
+        title: "Заголовок"
+        content: "Зміст"
+        published_at: "Дата публікації"
+        image: "Зображення"
+      document:
+        name: "Назва"
+        description: "Опис"
+        file: "Файл"
+    errors:
+      models:
+        news:
+          attributes:
+            title:
+              blank: "не може бути порожнім"
+            content:
+              blank: "не може бути порожнім"
+        document:
+          attributes:
+            name:
+              blank: "не може бути порожнім"

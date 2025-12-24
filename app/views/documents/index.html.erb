@@ -1,0 +1,70 @@
+<% content_for :title, "Документи" %>
+
+<!-- Page header-->
+<header class="py-5 bg-light border-bottom mb-4">
+  <div class="container">
+    <div class="text-center my-5">
+      <h1 class="fw-bolder">Документи</h1>
+      <p class="lead mb-0">Завантажені документи та файли</p>
+    </div>
+  </div>
+</header>
+
+<div class="container py-5">
+  <div class="row mb-4">
+    <div class="col-12">
+      <%= link_to "Завантажити новий документ", new_document_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+
+  <% if @documents.any? %>
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Назва</th>
+                    <th>Опис</th>
+                    <th>Файл</th>
+                    <th>Дата завантаження</th>
+                    <th>Дії</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @documents.each do |document| %>
+                    <tr>
+                      <td><strong><%= document.name %></strong></td>
+                      <td><%= truncate(document.description, length: 100) %></td>
+                      <td>
+                        <% if document.file.attached? %>
+                          <i class="bi bi-file-earmark-text"></i>
+                          <%= document.file.filename %>
+                        <% else %>
+                          <span class="text-muted">Немає файлу</span>
+                        <% end %>
+                      </td>
+                      <td><%= l(document.created_at, format: :short) %></td>
+                      <td>
+                        <% if document.file.attached? %>
+                          <%= link_to "Завантажити", rails_blob_path(document.file, disposition: "attachment"), class: "btn btn-sm btn-outline-primary" %>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="alert alert-info">
+      Наразі немає завантажених документів.
+      <%= link_to "Завантажити перший документ", new_document_path, class: "alert-link" %>
+    </div>
+  <% end %>
+</div>

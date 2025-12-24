@@ -1,0 +1,18 @@
+current directory: /home/runner/work/college-website/college-website/vendor/bundle/ruby/3.2.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+/usr/bin/ruby3.2 -I/usr/lib/ruby/vendor_ruby extconf.rb
+creating Makefile
+
+current directory: /home/runner/work/college-website/college-website/vendor/bundle/ruby/3.2.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20251215-3748-a3hw7q sitelibdir\=./.gem.20251215-3748-a3hw7q clean
+
+current directory: /home/runner/work/college-website/college-website/vendor/bundle/ruby/3.2.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20251215-3748-a3hw7q sitelibdir\=./.gem.20251215-3748-a3hw7q
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+current directory: /home/runner/work/college-website/college-website/vendor/bundle/ruby/3.2.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20251215-3748-a3hw7q sitelibdir\=./.gem.20251215-3748-a3hw7q install
+/usr/bin/install -c -m 0755 websocket_mask.so ./.gem.20251215-3748-a3hw7q
+
+current directory: /home/runner/work/college-website/college-website/vendor/bundle/ruby/3.2.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20251215-3748-a3hw7q sitelibdir\=./.gem.20251215-3748-a3hw7q clean

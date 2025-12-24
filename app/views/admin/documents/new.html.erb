@@ -1,0 +1,24 @@
+<% content_for :title, "Новий документ - Адмін-панель" %>
+
+<div class="mb-4">
+  <h1>Додати документ</h1>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <%= form_with model: [:admin, @document], local: true do |form| %>
+      <% if @document.errors.any? %>
+        <div class="alert alert-danger">
+          <h5>Помилки при збереженні:</h5>
+          <ul class="mb-0">
+            <% @document.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      
+      <%= render 'form', form: form, button_text: 'Створити документ' %>
+    <% end %>
+  </div>
+</div>

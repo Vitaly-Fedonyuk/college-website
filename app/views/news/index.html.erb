@@ -1,0 +1,89 @@
+<% content_for :title, "Новини коледжу" %>
+
+<!-- Page header-->
+<header class="py-5 bg-light border-bottom mb-4">
+  <div class="container">
+    <div class="text-center my-5">
+      <h1 class="fw-bolder">Новини коледжу</h1>
+      <p class="lead mb-0">Будьте в курсі всіх подій нашого коледжу</p>
+    </div>
+  </div>
+</header>
+
+<!-- Page content-->
+<div class="container">
+  <div class="row">
+    <!-- News entries-->
+    <div class="col-lg-8">
+      <% if @news.any? %>
+        <% @news.each do |news_item| %>
+          <!-- News item-->
+          <div class="card mb-4">
+            <% if news_item.images.attached? && news_item.preview_image %>
+              <%= link_to news_path(news_item) do %>
+                <%= image_tag news_item.preview_image, class: "card-img-top", alt: news_item.title %>
+              <% end %>
+            <% else %>
+              <%= link_to news_path(news_item) do %>
+                <img class="card-img-top" src="https://dummyimage.com/850x350/ced4da/6c757d" alt="<%= news_item.title %>" />
+              <% end %>
+            <% end %>
+            <div class="card-body">
+              <div class="small text-muted"><%= l((news_item.published_at || news_item.created_at).to_date, format: :long) %></div>
+              <h2 class="card-title"><%= link_to news_item.title, news_path(news_item), class: "text-decoration-none" %></h2>
+              <p class="card-text"><%= truncate(news_item.content, length: 300) %></p>
+              <%= link_to "Читати далі →", news_path(news_item), class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+        
+        <!-- Pagination-->
+        <div class="d-flex justify-content-center mb-4">
+          <%= paginate @news, theme: 'twitter-bootstrap-5' %>
+        </div>
+      <% else %>
+        <div class="alert alert-info">
+          Наразі немає опублікованих новин.
+        </div>
+      <% end %>
+    </div>
+    
+    <!-- Side widgets-->
+    <div class="col-lg-4">
+      <!-- Categories widget-->
+      <div class="card mb-4">
+        <div class="card-header">Категорії</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <ul class="list-unstyled mb-0">
+                <li><a href="#!">Новини коледжу</a></li>
+                <li><a href="#!">Події</a></li>
+                <li><a href="#!">Досягнення</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <ul class="list-unstyled mb-0">
+                <li><a href="#!">Оголошення</a></li>
+                <li><a href="#!">Конкурси</a></li>
+                <li><a href="#!">Спорт</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Side widget-->
+      <div class="card mb-4">
+        <div class="card-header">Корисні посилання</div>
+        <div class="card-body">
+          <ul class="list-unstyled">
+            <li><%= link_to "Абітурієнту", applicants_path %></li>
+            <li><%= link_to "Студенту", students_path %></li>
+            <li><%= link_to "Публічна інформація", public_info_path %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
