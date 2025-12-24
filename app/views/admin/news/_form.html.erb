@@ -96,11 +96,11 @@
 <script>
   function openPreview() {
     const form = document.getElementById('news-form');
-    const previewUrl = '<%= preview_admin_news_path(news_item) if news_item.persisted? %>';
+    const previewUrl = '<%= news_path(news_item) if news_item.persisted? %>';
     
     // Create a temporary form to submit to preview
     const previewForm = document.createElement('form');
-    previewForm.method = 'POST';
+    previewForm.method = 'GET';
     previewForm.action = previewUrl;
     previewForm.target = '_blank';
     
