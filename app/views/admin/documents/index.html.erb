@@ -1,0 +1,74 @@
+<% content_for :title, "Документи - Адмін-панель" %>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1>Документи</h1>
+  <%= link_to "Додати документ", new_admin_document_path, class: "btn btn-primary" %>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <% if @documents.any? %>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Назва</th>
+              <th>Категорія</th>
+              <th>Файл</th>
+              <th>Дата створення</th>
+              <th>Дії</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @documents.each do |document| %>
+              <tr>
+                <td>
+                  <strong><%= document.name %></strong>
+                  <% if document.description.present? %>
+                    <br>
+                    <small class="text-muted"><%= truncate(document.description, length: 50) %></small>
+                  <% end %>
+                </td>
+                <td>
+                  <span class="badge bg-info">
+                    <%= Document::CATEGORIES[document.category] || document.category %>
+                  </span>
+                </td>
+                <td>
+                  <% if document.file.attached? %>
+                    <i class="bi bi-file-earmark-pdf text-danger"></i>
+                    <%= number_to_human_size(document.file.byte_size) %>
+                  <% else %>
+                    <span class="text-muted">Немає файлу</span>
+                  <% end %>
+                </td>
+                <td><%= l(document.created_at, format: :short) %></td>
+                <td>
+                  <div class="btn-group" role="group">
+                    <%= link_to admin_document_path(document), method: :edit, class: "btn btn-sm btn-outline-primary" do %>
+                      <i class="bi bi-pencil"></i>
+                    <% end %>
+                    <%= button_to admin_document_path(document), method: :delete, 
+                        data: { confirm: "Ви впевнені, що хочете видалити цей документ?" },
+                        class: "btn btn-sm btn-outline-danger" do %>
+                      <i class="bi bi-trash"></i>
+                    <% end %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="d-flex justify-content-center mt-4">
+        <%= paginate @documents, theme: 'twitter-bootstrap-5' %>
+      </div>
+    <% else %>
+      <div class="text-center py-5">
+        <p class="text-muted">Документів ще немає</p>
+        <%= link_to "Додати перший документ", new_admin_document_path, class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

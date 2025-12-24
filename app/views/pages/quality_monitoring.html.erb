@@ -4,6 +4,40 @@
   <h1 class="mb-4">Моніторинг якості освіти</h1>
   
   <div class="card mb-4">
+    <div class="card-header">
+      <h3 class="mb-0">Документи</h3>
+    </div>
+    <div class="card-body">
+      <% if @documents.any? %>
+        <ul class="list-group list-group-flush">
+          <% @documents.each do |document| %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div>
+                <i class="bi bi-file-earmark-pdf text-danger me-2"></i>
+                <%= link_to document.name, rails_blob_path(document.file, disposition: "attachment"), class: "text-decoration-none" if document.file.attached? %>
+                <% unless document.file.attached? %>
+                  <span class="text-muted"><%= document.name %></span>
+                <% end %>
+                <% if document.description.present? %>
+                  <br>
+                  <small class="text-muted"><%= document.description %></small>
+                <% end %>
+              </div>
+              <% if document.file.attached? %>
+                <span class="badge bg-primary rounded-pill">
+                  <%= number_to_human_size(document.file.byte_size) %>
+                </span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="text-muted">Документи ще не додані.</p>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="card mb-4">
     <div class="card-header bg-primary text-white">
       <h3 class="mb-0">Показники якості 2023-2024</h3>
     </div>
