@@ -26,6 +26,14 @@ class Admin::NewsController < Admin::BaseController
   end
   
   def update
+    # Handle image removal
+    if params[:news][:remove_images].present?
+      params[:news][:remove_images].each do |image_id|
+        image = @news_item.images.find(image_id)
+        image.purge if image
+      end
+    end
+    
     if @news_item.update(news_params)
       redirect_to admin_news_index_path, notice: 'Новину успішно оновлено.'
     else
@@ -51,6 +59,6 @@ class Admin::NewsController < Admin::BaseController
   end
   
   def news_params
-    params.require(:news).permit(:title, :content, :published_at, :image)
+    params.require(:news).permit(:title, :content, :published_at, images: [])
   end
 end

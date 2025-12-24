@@ -43,16 +43,26 @@
           <h5 class="mb-0">Зображення</h5>
         </div>
         <div class="card-body">
-          <% if news_item.image.attached? %>
+          <% if news_item.images.attached? %>
             <div class="mb-3">
-              <%= image_tag news_item.image.variant(resize_to_limit: [400, 300]), class: "img-fluid rounded" %>
+              <div class="row">
+                <% news_item.images.each_with_index do |image, index| %>
+                  <div class="col-6 mb-2">
+                    <%= image_tag image.variant(resize_to_limit: [200, 150]), class: "img-fluid rounded" %>
+                    <div class="form-check mt-1">
+                      <%= check_box_tag "news[remove_images][]", image.id, false, class: "form-check-input", id: "remove_image_#{index}" %>
+                      <%= label_tag "remove_image_#{index}", "Видалити", class: "form-check-label small" %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
             </div>
           <% end %>
           
           <div class="mb-3">
-            <%= form.label :image, "Завантажити зображення", class: "form-label" %>
-            <%= form.file_field :image, class: "form-control", accept: "image/*" %>
-            <div class="form-text">Рекомендований розмір: 800x600 пікселів</div>
+            <%= form.label :images, "Завантажити зображення", class: "form-label" %>
+            <%= form.file_field :images, class: "form-control", accept: "image/*", multiple: true %>
+            <div class="form-text">Можна вибрати декілька зображень. Рекомендований розмір: 800x600 пікселів</div>
           </div>
         </div>
       </div>

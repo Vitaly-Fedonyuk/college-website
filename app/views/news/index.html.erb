@@ -19,9 +19,9 @@
         <% @news.each do |news_item| %>
           <!-- News item-->
           <div class="card mb-4">
-            <% if news_item.image.attached? %>
+            <% if news_item.images.attached? && news_item.preview_image %>
               <%= link_to news_path(news_item) do %>
-                <%= image_tag news_item.image, class: "card-img-top", alt: news_item.title %>
+                <%= image_tag news_item.preview_image, class: "card-img-top", alt: news_item.title %>
               <% end %>
             <% else %>
               <%= link_to news_path(news_item) do %>

@@ -79,8 +79,8 @@
       <% @recent_news&.each do |news_item| %>
         <div class="col-lg-4 mb-5">
           <div class="card h-100 shadow border-0">
-            <% if news_item.image.attached? %>
-              <%= image_tag news_item.image, class: "card-img-top", alt: news_item.title %>
+            <% if news_item.images.attached? && news_item.preview_image %>
+              <%= image_tag news_item.preview_image, class: "card-img-top", alt: news_item.title %>
             <% else %>
               <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="<%= news_item.title %>" />
             <% end %>
