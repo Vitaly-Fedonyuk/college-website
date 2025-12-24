@@ -13,7 +13,7 @@
         <li class="nav-item">
           <%= link_to "Новини", news_index_path, class: "nav-link #{'active' if current_page?(news_index_path)}" %>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown dropdown-hover">
           <a class="nav-link dropdown-toggle" id="navbarDropdownStudent" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Студенту
           </a>
@@ -21,7 +21,7 @@
             <li><%= link_to "Гуртки", student_clubs_path, class: "dropdown-item" %></li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown dropdown-hover">
           <a class="nav-link dropdown-toggle" id="navbarDropdownApplicant" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Абітурієнту
           </a>
@@ -43,3 +43,17 @@
     </div>
   </div>
 </nav>
+
+<style>
+  /* Enable dropdown on hover for desktop */
+  @media (min-width: 992px) {
+    .dropdown-hover:hover > .dropdown-menu {
+      display: block;
+      margin-top: 0;
+    }
+    
+    .dropdown-hover > .dropdown-toggle:active {
+      pointer-events: none;
+    }
+  }
+</style>
